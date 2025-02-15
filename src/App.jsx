@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
-import { supabase } from './lib/supabase'
 import useAuth from './hooks/useAuth'
 import Layout from './components/Layout'
 import Login from './pages/Login'
