@@ -1,30 +1,34 @@
-import { Fragment } from 'react'
-import { Outlet, Link, useLocation } from 'react-router-dom'
-import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import useAuth from '../hooks/useAuth'
-import { useState } from 'react'
+import { Fragment } from "react";
+import { Outlet, Link, useLocation } from "react-router-dom";
+import { Dialog, Transition } from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import useAuth from "../hooks/useAuth";
+import { useState } from "react";
 
 const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Add Person', href: '/add-person' },
-  { name: 'Search Person', href: '/search-person' },
-  { name: 'New Donation', href: '/new-donation' },
-  { name: 'New Receive', href: '/new-receive' },
-  { name: 'Check Stock', href: '/check-stock' },
-  { name: 'Donation History', href: '/donation-history' },
-  { name: 'Receiving History', href: '/receiving-history' },
-]
+  { name: "Home", href: "/" },
+  { name: "Add Person", href: "/add-person" },
+  { name: "Search Person", href: "/search-person" },
+  { name: "New Donation", href: "/new-donation" },
+  { name: "New Receive", href: "/new-receive" },
+  { name: "Check Stock", href: "/check-stock" },
+  { name: "Donation History", href: "/donation-history" },
+  { name: "Receiving History", href: "/receiving-history" },
+];
 
 export default function Layout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const { signOut } = useAuth()
-  const location = useLocation()
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { signOut } = useAuth();
+  const location = useLocation();
 
   return (
     <div className="min-h-screen bg-gray-100">
       <Transition.Root show={sidebarOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
+        <Dialog
+          as="div"
+          className="relative z-50 lg:hidden"
+          onClose={setSidebarOpen}
+        >
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -66,9 +70,10 @@ export default function Layout() {
                                 to={item.href}
                                 className={`
                                   group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold
-                                  ${location.pathname === item.href
-                                    ? 'bg-gray-50 text-red-600'
-                                    : 'text-gray-700 hover:text-red-600 hover:bg-gray-50'
+                                  ${
+                                    location.pathname === item.href
+                                      ? "bg-gray-50 text-red-600"
+                                      : "text-gray-700 hover:text-red-600 hover:bg-gray-50"
                                   }
                                 `}
                               >
@@ -107,9 +112,10 @@ export default function Layout() {
                         to={item.href}
                         className={`
                           group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold
-                          ${location.pathname === item.href
-                            ? 'bg-gray-50 text-red-600'
-                            : 'text-gray-700 hover:text-red-600 hover:bg-gray-50'
+                          ${
+                            location.pathname === item.href
+                              ? "bg-gray-50 text-red-600"
+                              : "text-gray-700 hover:text-red-600 hover:bg-gray-50"
                           }
                         `}
                       >
@@ -133,6 +139,27 @@ export default function Layout() {
       </div>
 
       <div className="lg:pl-72">
+        {/* Button to open sidebar for mobile screens only */}
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="absolute top-2 left-2 lg:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+
         <main className="py-10">
           <div className="px-4 sm:px-6 lg:px-8">
             <Outlet />
@@ -140,5 +167,5 @@ export default function Layout() {
         </main>
       </div>
     </div>
-  )
-} 
+  );
+}
