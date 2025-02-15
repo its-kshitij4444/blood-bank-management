@@ -10,8 +10,8 @@ import SearchPerson from './pages/SearchPerson'
 import NewDonation from './pages/NewDonation'
 import NewReceive from './pages/NewReceive'
 import CheckStock from './pages/CheckStock'
-import DonationHistory from './pages/DonationHistory'
-import ReceivingHistory from './pages/ReceivingHistory'
+import DonationHistory from './pages/DonationHistory' 
+import ReceivingHistory from './pages/ReceivingHistory' 
 
 function ProtectedRoute({ children }) {
   const { session } = useAuth()
@@ -47,4 +47,4 @@ export default function App() {
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
-}
+} 
